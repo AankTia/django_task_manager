@@ -1,0 +1,21 @@
+{% extends 'tasks/base.html' %}
+
+{% block %}
+    <h2>Task List</h2>
+
+    {% if tasks %}
+        {% for task in tasks %}
+            <div class="task">
+                <h3>{{ task.title }}</h3>
+                <p>Status: {{ task.get_status_display }}</p>
+                <p>
+                    <a href="{% url 'tasks:task_detail' task.pk %}" class="button">View</a>
+                    <a href="{% url 'tasks:task_update' task.pk %}" class="button">Edit</a>
+                    <a href="{% url 'tasks:task_delete' task.pk %}" class="button">Delete</a>
+                </p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No tasks available.</p>
+    {% endif %}
+{% endblock %}
