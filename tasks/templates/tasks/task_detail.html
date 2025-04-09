@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block %}
+    <h2>{{ task.title }}</h2>
+
+    <div class="task">
+        <p><strong>Description:</strong> {{ task.description }}</p>
+        <p><strong>Created:</strong> {{ task.created_data}}</p>
+        <p><strong>Due Date:</strong> {{ task.due_date|default:"Note specified" }}</p>
+        <p><strong>Status:</strong> {{ task.get_status_display }}</p>
+        <p>
+            <a href="{% url 'tasks:task_update' task.pk %}" class="button">Edit</a>
+            <a href="{% url 'tasks:task_delete' task.pk %}" class="button">Delete</a>
+            <a href="{% url 'tasks:task_list' %}" class="button">Back to List</a>
+        </p>
+    </div>
+{% endblock %}
