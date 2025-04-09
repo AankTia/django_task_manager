@@ -1,0 +1,27 @@
+{% extends 'task/base.html' %}
+
+{% block content %}
+    <h2>{% if form.instance.pk %}Edit Task{% else %}Create New Task{% endif %}</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            <label for="{{ form.title.id_for_label }}">Title:</label>
+            {{ form.title }}
+        </div>
+        <div>
+            <label for="{{ form.description.id_for_label }}">Description:</label>
+            {{ form.description }}
+        </div>
+        <div>
+            <label for="{{ form.due_date.id_for_label }}">Due Date:</label>
+            {{ form.due_date }}
+        </div>
+        <div>
+            <label for="{{ form.status.id_for_label }}">Status:</label>
+            {{ form.status }}
+        </div>
+        <button type="submit">Save</button>
+        <a href="{% url 'tasks:task_list' %}" class="button">Cancel</a>
+    </form>
+{% endblock %}
